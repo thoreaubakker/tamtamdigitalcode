@@ -1,0 +1,56 @@
+//This Code has been developed by Thoreau Bakker & Samaa Ahmed, with the generous help of Professor Kate Hartman, Nick Puckett and Junjun Zhu
+//It is for a class on creation & computation at Ocad University in Toronto, Canada, in the fall of 2016
+
+
+
+function preload() {
+  soundFormats('wav');
+  sample = loadSound('kick.wav');
+  sample2 = loadSound('kick2.wav');
+}
+
+
+var canvas;
+
+function setup() {
+  // the following canvas code provided by Professor Puckett
+  canvas = createCanvas(window.innerWidth, window.innerHeight);
+  fullscreen(false)
+  sample2.play();
+}
+
+function draw() {
+  
+  //the following code initially provided by Professor Hartman
+  if (sample2.isPlaying()) {
+    background('white');
+    fill(0,150,220);
+    stroke('none');
+    ellipse(windowWidth / 2, windowHeight / 2, 300, 300);
+  } else {
+    background(0,150,220);
+    noStroke();
+    fill('white');
+    ellipse(windowWidth / 2, windowHeight / 2, 300, 300);
+  }
+
+}
+// the following code inspired by feedback on p5.js help forums
+function mousePressed() {
+  if (sample.isPlaying()) {
+    sample.playMode('restart');
+  } else {
+    sample2.play();
+    return false;
+  }
+}
+
+
+
+window.onresize = function() {
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  canvas.size(w, h + 500);
+  width = w;
+  height = h;
+}
